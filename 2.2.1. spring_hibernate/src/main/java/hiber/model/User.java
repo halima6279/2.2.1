@@ -1,9 +1,10 @@
 package hiber.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
-@Table(name = "users")
+@Table(name = "userrs")
 public class User {
 
    @Id
@@ -18,6 +19,10 @@ public class User {
 
    @Column(name = "email")
    private String email;
+
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinColumn(name="id", referencedColumnName = "id")
+   private Car car;
 
    public User() {}
    
@@ -57,5 +62,20 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   @Autowired
+   public void setCar(Car car){
+      this.car = car;
+      car.setUser(this);
+   }
+
+   @Override
+   public String toString() {
+      return "User{" +
+              "firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' +
+              '}';
    }
 }
