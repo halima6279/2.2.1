@@ -31,10 +31,21 @@ public class UserDaoImp implements UserDao {
       return query.getResultList();
    }
    @Override
-   public User getUserByCar(Car car){
-      long carId = car.getId();
-      User user =  sessionFactory.getCurrentSession().createQuery("SELECT u FROM User u where u.id=:carId", User.class)
-              .setParameter("carId", carId).uniqueResult();;
+   public User getUserByCar(String model, int series) {
+      User user = sessionFactory.getCurrentSession()
+              .createQuery("SELECT u FROM User u WHERE u.car.model=:model AND u.car.series=:series", User.class)
+              .setParameter("model", model)
+              .setParameter("series", series)
+              .uniqueResult();
+      return user;
+   }
+
+   @Override
+   public User getUserById(int id){
+      User user = sessionFactory.getCurrentSession()
+              .createQuery("SELECT u FROM User u WHERE u.id=:id", User.class)
+              .setParameter("id", id)
+              .uniqueResult();
       return user;
    }
 }

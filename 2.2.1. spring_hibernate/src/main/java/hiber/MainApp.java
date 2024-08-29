@@ -25,16 +25,21 @@ public class MainApp {
       userService.add(new User("User3", "Lastname3", "user3@mail.ru"));
       userService.add(new User("User4", "Lastname4", "user4@mail.ru"));
 
-//      List<User> users = userService.listUsers();
-//      for (User userr : users) {
-//         System.out.println("Id = "+userr.getId());
-//         System.out.println("First Name = "+userr.getFirstName());
-//         System.out.println("Last Name = "+userr.getLastName());
-//         System.out.println("Email = "+userr.getEmail());
-//         System.out.println();
-//      }
+      List<User> users = userService.listUsers();
+      for (User userr : users) {
+         System.out.println("Id = "+userr.getId());
+         System.out.println("First Name = "+userr.getFirstName());
+         System.out.println("Last Name = "+userr.getLastName());
+         System.out.println("Email = "+userr.getEmail());
+         System.out.println();
+      }
+//      System.out.println(userService.getUserById(1));
+//      System.out.println(userService.getUserById(2));
+//      System.out.println(userService.getUserById(3));
+//      System.out.println(userService.getUserById(4));
+//      System.out.println(userService.getUserById(5));
 
-      System.out.println(userService.getUserByCar(car));
+      System.out.println(userService.getUserByCar(car.getModel(), car.getSeries()));
       context.close();
    }
 }
